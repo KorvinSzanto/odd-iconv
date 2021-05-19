@@ -12,9 +12,8 @@ jobs:
       - name: "Install PHP"
         uses: shivammathur/setup-php@2.11.0
         with:
-          php-version: 7.4z
+          php-version: 7.4
           extensions: mbstring, iconv, intl
-          ini-values: memory_limit=-1
 
       - name: See if iconv fails
         run: |
