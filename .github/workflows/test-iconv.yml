@@ -1,0 +1,21 @@
+name: "Iconv"
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  iconvtest:
+    name: "Iconv"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Install PHP"
+        uses: shivammathur/setup-php@2.11.0
+        with:
+          php-version: 7.4z
+          extensions: mbstring, iconv, intl
+          ini-values: memory_limit=-1
+
+      - name: See if iconv fails
+        run: |
+          php -r '$r = iconv("UTF-8", "ASCII//TRANSLIT", "a 日本人"); echo $r; die($r ? 0 : 1);'
